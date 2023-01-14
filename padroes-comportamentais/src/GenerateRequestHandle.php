@@ -2,12 +2,22 @@
 
 namespace App;
 
+use App\ActionsWhenGeneratingOrder\ActionsAfterGeneratingOrder;
+
 class GenerateRequestHandle
 {
+    /** @var ActionsAfterGeneratingOrder[] */
+    private array $actions = [];
+
     /** aqui iria as dependencias necessarias para o funcionamento do codigo */
     public function __construct()
     {
         
+    }
+
+    public function addActionsWhenGeneratingOrder(ActionsAfterGeneratingOrder $action)
+    {
+        $this->actions[] = $action;
     }
 
     public function execute(GenerateRequest $generateRequest)
@@ -21,10 +31,8 @@ class GenerateRequestHandle
         $order->completionDate = new \DateTimeImmutable();
         $order->budget = $budget;
 
-        echo "coloca no banco de dados" . PHP_EOL;
-
-        echo "manda email avisando" . PHP_EOL;
-
-        echo "faz o logo" . PHP_EOL;
+        foreach ($this->actions as $action) {
+            $action->execute($order);
+        }
     }
 }
