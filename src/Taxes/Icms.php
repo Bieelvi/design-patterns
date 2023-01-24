@@ -4,9 +4,9 @@ namespace App\Taxes;
 
 use App\Budget;
 
-class Icms implements Tax
+class Icms extends Tax
 {
-    public function TaxCalculator(Budget $budget): float
+    public function specificCalculationPerformed(Budget $budget): float
     {
         return $budget->value * 0.1;
     }
