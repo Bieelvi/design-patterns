@@ -1,6 +1,7 @@
 <?php
 
 use App\Budget;
+use App\BudgetCacheProxy;
 use App\BudgetItem;
 
 require_once 'vendor/autoload.php';
@@ -31,4 +32,13 @@ $budget3->addItem($budgetItem6);
 $budget1->addItem($budget2);
 $budget2->addItem($budget3);
 
-echo $budget1->value();
+$budgetCachePoxy = new BudgetCacheProxy($budget1);
+
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
+echo $budgetCachePoxy->value();
