@@ -4,7 +4,6 @@ namespace App;
 
 class Order
 {
-    public string $clientName;
-    public \DateTimeInterface $completionDate;
+    public ExtrinsicOrderData $data;
     public Budget $budget;
 }
