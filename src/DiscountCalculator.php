@@ -16,6 +16,11 @@ class DiscountCalculator
             )
         );
 
-        return $chainDiscounts->calculateDiscount($budget); 
+        $calculaedDiscount = $chainDiscounts->calculateDiscount($budget); 
+
+        $discountLog = new DiscountLog();
+        $discountLog->inform($calculaedDiscount);
+
+        return $calculaedDiscount;
     }
 }
